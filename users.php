@@ -1,8 +1,12 @@
 <?php
- require 'db.php';
- require 'header.php';
+  require 'session_check.php';
 
-  $select = "SELECT * FROM users";
+ require 'db.php';
+
+
+ require 'dash_header.php';
+
+  $select = "SELECT * FROM users ORDER BY id DESC";
   $select_result = mysqli_query($db_con, $select);
  ?>
 
@@ -38,12 +42,18 @@
                         <a href="single_view.php?id=<?php echo $user['id'] ?>" class="btn btn-info">View</a>
                         <a href="edit_user.php?id=<?php echo $user['id'] ?>" class="btn btn-warning">Edit</a>
 
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal<?php echo $user['id'] ?>">
-                          Delete
-                        </button>
+                       <?php
+                         if($_SESSION['role'] == 1){ ?>
+                           <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal<?php echo $user['id'] ?>">
+                             Delete
+                           </button>
+                      <?php } ?>
                     </td>
 
                     </tr>
+
+
+
 
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal<?php echo $user['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -84,6 +94,8 @@
 
             </table>
 
+              <a href="logout.php" class="btn btn-danger">LogOut</a>
+
 
           </div>
        </div>
@@ -110,5 +122,5 @@
 
 
  <?php
-  require 'footer.php';
+  require 'dash_footer.php';
   ?>

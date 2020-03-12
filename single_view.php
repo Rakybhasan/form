@@ -1,6 +1,7 @@
 <?php
+  require 'session_check.php';
  require 'db.php';
- require 'header.php';
+ require 'dash_header.php';
  $id = $_GET['id'];
 
  $select = "SELECT * FROM users WHERE id = '$id'";
@@ -68,5 +69,5 @@
 
 
  <?php
-  require 'footer.php';
+  require 'dash_footer.php';
   ?>

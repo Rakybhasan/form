@@ -1,4 +1,5 @@
 <?php
+  require 'session_check.php';
  require 'db.php';
  $id = $_GET['id'];
 
@@ -6,7 +7,7 @@
  $select_result = mysqli_query($db_con, $select);
  $after_assoc = mysqli_fetch_assoc($select_result);
 
-  require 'header.php';
+  require 'dash_header.php';
  ?>
 
 
@@ -66,5 +67,5 @@
 
 
 <?php
-  require 'footer.php';
+  require 'dash_footer.php';
  ?>
